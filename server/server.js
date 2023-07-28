@@ -20,11 +20,12 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 
-//routes
-app.get("/", (req, res) => {
-  res.send("<h1>Hello buddy from server</h1>");
-});
+//routes to test routes
+//app.get("/", (req, res) => {
+//res.send("<h1>Hello buddy from server</h1>");
+//});
 
+app.unsubscribe("/api/v1/users", require("./routes/userRoute"));
 //port
 const PORT = 9000 || process.env.PORT;
 
