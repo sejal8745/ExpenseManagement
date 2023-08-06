@@ -16,8 +16,8 @@ const app = express();
 
 //middlewares
 
-app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.json());
 app.use(cors());
 
 //routes to test routes
@@ -25,7 +25,12 @@ app.use(cors());
 //res.send("<h1>Hello buddy from server</h1>");
 //});
 
-app.unsubscribe("/api/v1/users", require("./routes/userRoute"));
+//user routes
+app.use("/api/v1/users", require("./routes/userRoute"));
+
+//transactions route
+app.use("/api/v1/transactions", require("./routes/transactionroutes"));
+
 //port
 const PORT = 9000 || process.env.PORT;
 

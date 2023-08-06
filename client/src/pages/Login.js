@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,10 +12,13 @@ const Login = () => {
     //console.log(values);
     try {
       setLoading(true);
-      const { data } = await axios.post("/api/login", values);
+      const { data } = await axios.post("/users/login", values);
       setLoading(false);
       message.success("successfully login");
-      localStorage.setItem("user", JSON.stringify({ ...data, password: "" }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...data.user, password: "" })
+      );
 
       navigate("/");
     } catch (error) {
@@ -23,6 +26,15 @@ const Login = () => {
       message.error("invalid login credentials");
     }
   };
+
+  //prevent for login user
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   return (
     <>
       <div className="register-page">
@@ -32,11 +44,11 @@ const Login = () => {
           <Form.Item label="Email id" name="email">
             <Input type="email" />
           </Form.Item>
-          <Form.Item label="Passoword" name="name">
+          <Form.Item label="Password" name="password">
             <Input type="password" />
           </Form.Item>
           <div className="d-flex">
-            <Link to="/login">Not a user ? Click here to register</Link>
+            <Link to="/register">Not a user ? Click here to register</Link>
             <button className="btn btn-primary">Login</button>
           </div>
         </Form>

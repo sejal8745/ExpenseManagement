@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,19 +9,25 @@ const Register = () => {
   //submit
   const submithandler = async (values) => {
     //console.log(values);
-
     try {
       setLoading(true);
       await axios.post("/users/register", values);
-      setLoading(false);
       message.success("Registrations successfully done");
-
+      setLoading(false);
       navigate("/login");
     } catch (error) {
       setLoading(false);
       message.error("invalid username or password");
     }
   };
+
+  //prevent for login user
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/");
+    }
+  }, [navigate]);
   return (
     <>
       <div className="register-page">
@@ -34,7 +40,7 @@ const Register = () => {
           <Form.Item label="Email id" name="email">
             <Input type="email" />
           </Form.Item>
-          <Form.Item label="Passoword" name="name">
+          <Form.Item label="Passoword" name="password">
             <Input type="password" />
           </Form.Item>
           <div className="d-flex">

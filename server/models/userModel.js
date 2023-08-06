@@ -1,24 +1,26 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 //schema sdesign
-const userSchema = mongoose.Schema({
-
-    name:{
-        type:String,
-        required:[true, 'name is required']
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "name is required"],
     },
 
-    email:{
-        type:String,
-        required:[true, 'email is required ans should be unique'],
-        unique:true,
+    email: {
+      type: String,
+      required: [true, "email is required ans should be unique"],
+      unique: true,
     },
 
-    passwords:{
-        type: String,
-        required:[true, 'passwords is required'],
+    password: {
+      type: String,
+      required: [true, "passwords is required"],
     },
-},{timestamps:true});
+  },
+  { timestamps: true }
+);
 
-export userModel = mongoose.model('user',userSchema)
+const userModel = mongoose.model("users", userSchema);
 module.exports = userModel;
