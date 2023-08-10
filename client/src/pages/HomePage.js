@@ -143,53 +143,63 @@ const HomePage = () => {
   return (
     <Layout>
       {loading && <Spinner />}
-      <div className="filters">
+      <div className="filters-box">
         <div>
-          <h6>Select Frequency</h6>
-          <Select value={frequency} onChange={(value) => setFrequency(value)}>
-            <Select.Option value="7">Last 1 Week</Select.Option>
-            <Select.Option value="30">Last 1 Month</Select.Option>
-            <Select.Option value="365">Last 1 Year</Select.Option>
-            <Select.Option value="custom">Custom</Select.Option>
-          </Select>
-          {frequency === "custom" && (
-            <RangePicker
-              value={selectDate}
-              onChange={(values) => {
-                setSelectDate(values);
-              }}
-            />
-          )}
+          <h3>Filters</h3>
         </div>
-        <div>
-          <h6>Select Type</h6>
-          <Select value={type} onChange={(value) => setType(value)}>
-            <Select.Option value="all">ALL TYPE</Select.Option>
-            <Select.Option value="income">INCOME</Select.Option>
-            <Select.Option value="expense">EXPENSE</Select.Option>
-          </Select>
-        </div>
-        <div className="switch-icon">
-          <UnorderedListOutlined
-            className={`mx2 ${
-              viewData === "table" ? "active-icon" : "inactive-icon"
-            }`}
-            onClick={() => setViewData("table")}
-          />
-          <AreaChartOutlined
-            className={`mx2 ${
-              viewData === "analytics" ? "active-icon" : "inactive-icon"
-            }`}
-            onClick={() => setViewData("analytics")}
-          />
-        </div>
-        <div>
-          <button
-            className="btn btn-primary"
-            onClick={() => setShowModal(true)}
-          >
-            Add New
-          </button>
+        <div className="filters">
+          {" "}
+          <div>
+            <h6>Select Frequency</h6>
+            <Select value={frequency} onChange={(value) => setFrequency(value)}>
+              <Select.Option value="7">Last 1 Week</Select.Option>
+              <Select.Option value="30">Last 1 Month</Select.Option>
+              <Select.Option value="365">Last 1 Year</Select.Option>
+              <Select.Option value="custom">Custom</Select.Option>
+            </Select>
+            {frequency === "custom" && (
+              <RangePicker
+                value={selectDate}
+                onChange={(values) => {
+                  setSelectDate(values);
+                }}
+              />
+            )}
+          </div>
+          <div>
+            <h6>Select Type</h6>
+            <Select value={type} onChange={(value) => setType(value)}>
+              <Select.Option value="all">ALL TYPE</Select.Option>
+              <Select.Option value="income">INCOME</Select.Option>
+              <Select.Option value="expense">EXPENSE</Select.Option>
+            </Select>
+          </div>
+          <div className="switch-icon">
+            <div style={{ padding: "10px" }}>
+              <UnorderedListOutlined
+                className={`mx1 ${
+                  viewData === "table" ? "active-icon" : "inactive-icon"
+                }`}
+                onClick={() => setViewData("table")}
+              />
+            </div>
+            <div style={{ padding: "10px" }}>
+              <AreaChartOutlined
+                className={`mx1 ${
+                  viewData === "analytics" ? "active-icon" : "inactive-icon"
+                }`}
+                onClick={() => setViewData("analytics")}
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={() => setShowModal(true)}
+            >
+              Add New
+            </button>
+          </div>
         </div>
       </div>
       <div className="content">

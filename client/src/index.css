@@ -6,6 +6,7 @@
 
 .content {
   min-height: 100vh;
+  margin: 0 20px;
 }
 
 .register-page {
@@ -15,18 +16,24 @@
   height: 80vh;
 }
 
+.filters-box {
+  padding: 30px 25px;
+}
+
 .filters {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
-  box-shadow: 0 0 3px grey;
+  padding-top: 25px;
+}
+
+.logicon {
+  font-size: 25px !important;
+  color: rgb(94, 93, 93);
 }
 
 .switch-icon {
-  border: 1px solid rgb(0, 0, 0.67);
-  border-radius: 5px;
-  padding: 10px 15px;
+  display: flex;
 }
 
 .anticon svg {
@@ -39,5 +46,5 @@
 }
 
 .inactive-icon {
-  color: grey;
+  color: rgb(153, 153, 153);
 }
